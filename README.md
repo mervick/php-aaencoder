@@ -15,8 +15,10 @@ echo AAEncoder::encode(file_get_contents('/path/to/file.js'));
 
 // Decode:
 echo AADecoder::decode(file_get_contents('/path/to/encoded.js'));
-
 ```
+
+## Requirements
+PHP >= 5.4
 
 ## License
 MIT
