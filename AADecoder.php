@@ -11,29 +11,30 @@
  */
 class AADecoder
 {
-    const BEGIN_CODE = "ﾟωﾟﾉ= /｀ｍ´）ﾉ ~┻━┻   //*´∇｀*/ ['_']; o=(ﾟｰﾟ)  =_=3; c=(ﾟΘﾟ) =(ﾟｰﾟ)-(ﾟｰﾟ); " .
-    "(ﾟДﾟ) =(ﾟΘﾟ)= (o^_^o)/ (o^_^o);" .
-    "(ﾟДﾟ)={ﾟΘﾟ: '_' ,ﾟωﾟﾉ : ((ﾟωﾟﾉ==3) +'_') [ﾟΘﾟ] " .
-    ",ﾟｰﾟﾉ :(ﾟωﾟﾉ+ '_')[o^_^o -(ﾟΘﾟ)] " .
-    ",ﾟДﾟﾉ:((ﾟｰﾟ==3) +'_')[ﾟｰﾟ] }; (ﾟДﾟ) [ﾟΘﾟ] =((ﾟωﾟﾉ==3) +'_') [c^_^o];" .
-    "(ﾟДﾟ) ['c'] = ((ﾟДﾟ)+'_') [ (ﾟｰﾟ)+(ﾟｰﾟ)-(ﾟΘﾟ) ];" .
-    "(ﾟДﾟ) ['o'] = ((ﾟДﾟ)+'_') [ﾟΘﾟ];" .
-    "(ﾟoﾟ)=(ﾟДﾟ) ['c']+(ﾟДﾟ) ['o']+(ﾟωﾟﾉ +'_')[ﾟΘﾟ]+ ((ﾟωﾟﾉ==3) +'_') [ﾟｰﾟ] + " .
-    "((ﾟДﾟ) +'_') [(ﾟｰﾟ)+(ﾟｰﾟ)]+ ((ﾟｰﾟ==3) +'_') [ﾟΘﾟ]+" .
-    "((ﾟｰﾟ==3) +'_') [(ﾟｰﾟ) - (ﾟΘﾟ)]+(ﾟДﾟ) ['c']+" .
-    "((ﾟДﾟ)+'_') [(ﾟｰﾟ)+(ﾟｰﾟ)]+ (ﾟДﾟ) ['o']+" .
-    "((ﾟｰﾟ==3) +'_') [ﾟΘﾟ];(ﾟДﾟ) ['_'] =(o^_^o) [ﾟoﾟ] [ﾟoﾟ];" .
-    "(ﾟεﾟ)=((ﾟｰﾟ==3) +'_') [ﾟΘﾟ]+ (ﾟДﾟ) .ﾟДﾟﾉ+" .
-    "((ﾟДﾟ)+'_') [(ﾟｰﾟ) + (ﾟｰﾟ)]+((ﾟｰﾟ==3) +'_') [o^_^o -ﾟΘﾟ]+" .
-    "((ﾟｰﾟ==3) +'_') [ﾟΘﾟ]+ (ﾟωﾟﾉ +'_') [ﾟΘﾟ]; " .
-    "(ﾟｰﾟ)+=(ﾟΘﾟ); (ﾟДﾟ)[ﾟεﾟ]='\\\\'; " .
-    "(ﾟДﾟ).ﾟΘﾟﾉ=(ﾟДﾟ+ ﾟｰﾟ)[o^_^o -(ﾟΘﾟ)];" .
-    "(oﾟｰﾟo)=(ﾟωﾟﾉ +'_')[c^_^o];" .
-    "(ﾟДﾟ) [ﾟoﾟ]='\\\"';" .
-    "(ﾟДﾟ) ['_'] ( (ﾟДﾟ) ['_'] (ﾟεﾟ+" .
-    "(ﾟДﾟ)[ﾟoﾟ]+ ";
+    const BEGIN_CODE =
+        "ﾟωﾟﾉ=/｀ｍ´）ﾉ~┻━┻//*´∇｀*/['_'];o=(ﾟｰﾟ)=_=3;c=(ﾟΘﾟ)=(ﾟｰﾟ)-(ﾟｰﾟ);" .
+        "(ﾟДﾟ)=(ﾟΘﾟ)=(o^_^o)/(o^_^o);" .
+        "(ﾟДﾟ)={ﾟΘﾟ:'_',ﾟωﾟﾉ:((ﾟωﾟﾉ==3)+'_')[ﾟΘﾟ]" .
+        ",ﾟｰﾟﾉ:(ﾟωﾟﾉ+'_')[o^_^o-(ﾟΘﾟ)]" .
+        ",ﾟДﾟﾉ:((ﾟｰﾟ==3)+'_')[ﾟｰﾟ]};(ﾟДﾟ)[ﾟΘﾟ]=((ﾟωﾟﾉ==3)+'_')[c^_^o];" .
+        "(ﾟДﾟ)['c']=((ﾟДﾟ)+'_')[(ﾟｰﾟ)+(ﾟｰﾟ)-(ﾟΘﾟ)];" .
+        "(ﾟДﾟ)['o']=((ﾟДﾟ)+'_')[ﾟΘﾟ];" .
+        "(ﾟoﾟ)=(ﾟДﾟ)['c']+(ﾟДﾟ)['o']+(ﾟωﾟﾉ+'_')[ﾟΘﾟ]+((ﾟωﾟﾉ==3)+'_')[ﾟｰﾟ]+" .
+        "((ﾟДﾟ)+'_')[(ﾟｰﾟ)+(ﾟｰﾟ)]+((ﾟｰﾟ==3)+'_')[ﾟΘﾟ]+" .
+        "((ﾟｰﾟ==3)+'_')[(ﾟｰﾟ)-(ﾟΘﾟ)]+(ﾟДﾟ)['c']+" .
+        "((ﾟДﾟ)+'_')[(ﾟｰﾟ)+(ﾟｰﾟ)]+(ﾟДﾟ)['o']+" .
+        "((ﾟｰﾟ==3)+'_')[ﾟΘﾟ];(ﾟДﾟ)['_']=(o^_^o)[ﾟoﾟ][ﾟoﾟ];" .
+        "(ﾟεﾟ)=((ﾟｰﾟ==3)+'_')[ﾟΘﾟ]+(ﾟДﾟ).ﾟДﾟﾉ+" .
+        "((ﾟДﾟ)+'_')[(ﾟｰﾟ)+(ﾟｰﾟ)]+((ﾟｰﾟ==3)+'_')[o^_^o-ﾟΘﾟ]+" .
+        "((ﾟｰﾟ==3)+'_')[ﾟΘﾟ]+(ﾟωﾟﾉ+'_')[ﾟΘﾟ];" .
+        "(ﾟｰﾟ)+=(ﾟΘﾟ);(ﾟДﾟ)[ﾟεﾟ]='\\\\';" .
+        "(ﾟДﾟ).ﾟΘﾟﾉ=(ﾟДﾟ+ﾟｰﾟ)[o^_^o-(ﾟΘﾟ)];" .
+        "(oﾟｰﾟo)=(ﾟωﾟﾉ+'_')[c^_^o];" .
+        "(ﾟДﾟ)[ﾟoﾟ]='\\\"';" .
+        "(ﾟДﾟ)['_']((ﾟДﾟ)['_'](ﾟεﾟ+" .
+        "(ﾟДﾟ)[ﾟoﾟ]+";
 
-    const END_CODE = "(ﾟДﾟ)[ﾟoﾟ]) (ﾟΘﾟ)) ('_');";
+    const END_CODE = "(ﾟДﾟ)[ﾟoﾟ])(ﾟΘﾟ))('_');";
 
 
     /**
@@ -43,10 +44,9 @@ class AADecoder
      */
     public static function decode($js)
     {
-        if (self::hasAAEncoded($js, $start, $end)) {
-            $decoded = self::deobfuscate(mb_substr($js, $pos = $start + mb_strlen(self::BEGIN_CODE, 'UTF-8'), $end - $pos, 'UTF-8')) . ';';
-            return mb_substr($js, 0, $start, 'UTF-8') . $decoded .
-                self::decode(mb_substr($js, $end + mb_strlen(self::END_CODE, 'UTF-8') + 1, null, 'UTF-8'));
+        if (self::hasAAEncoded($js, $start, $next, $encoded)) {
+            $decoded = self::deobfuscate($encoded) . ';';
+            return mb_substr($js, 0, $start, 'UTF-8') . $decoded . self::decode(mb_substr($js, $next, null, 'UTF-8'));
         }
         return $js;
     }
@@ -58,25 +58,25 @@ class AADecoder
     protected static function deobfuscate($js)
     {
         $bytes = [
-            5 => "((ﾟｰﾟ) + (ﾟΘﾟ))" ,
-            6 => "((o^_^o) +(o^_^o))" ,
-            7 => "((ﾟｰﾟ) + (o^_^o))" ,
-            8 => "((ﾟｰﾟ) + (ﾟｰﾟ))" ,
-            9 => "((ﾟｰﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ))" ,
-            10 => "(ﾟДﾟ) .ﾟωﾟﾉ" ,
-            11 => "(ﾟДﾟ) .ﾟΘﾟﾉ" ,
-            12 => "(ﾟДﾟ) ['c']" ,
-            13 => "(ﾟДﾟ) .ﾟｰﾟﾉ" ,
-            14 => "(ﾟДﾟ) .ﾟДﾟﾉ" ,
-            15 => "(ﾟДﾟ) [ﾟΘﾟ]",
-            4 => "(ﾟｰﾟ)" ,
-            2 => "((o^_^o) - (ﾟΘﾟ))" ,
-            3 => "(o^_^o)" ,
-            1 => "(ﾟΘﾟ)" ,
-            0 => "(c^_^o)" ,
+            9 => '((ﾟｰﾟ)+(ﾟｰﾟ)+(ﾟΘﾟ))',
+            6 => '((o^_^o)+(o^_^o))',
+            2 => '((o^_^o)-(ﾟΘﾟ))',
+            7 => '((ﾟｰﾟ)+(o^_^o))',
+            5 => '((ﾟｰﾟ)+(ﾟΘﾟ))',
+            8 => '((ﾟｰﾟ)+(ﾟｰﾟ))',
+            10 => '(ﾟДﾟ).ﾟωﾟﾉ',
+            11 => '(ﾟДﾟ).ﾟΘﾟﾉ',
+            12 => '(ﾟДﾟ)[\'c\']',
+            13 => '(ﾟДﾟ).ﾟｰﾟﾉ',
+            14 => '(ﾟДﾟ).ﾟДﾟﾉ',
+            15 => '(ﾟДﾟ)[ﾟΘﾟ]',
+            3 => '(o^_^o)',
+            0 => '(c^_^o)',
+            4 => '(ﾟｰﾟ)',
+            1 => '(ﾟΘﾟ)',
         ];
         $chars = [];
-        $hex = "(oﾟｰﾟo)+ ";
+        $hex = '(oﾟｰﾟo)+';
         $hexLen = mb_strlen($hex, 'UTF-8');
         $convert = function ($block, $func) use ($bytes) {
             foreach ($bytes as $byte => $search) {
@@ -88,8 +88,7 @@ class AADecoder
             }
             return implode('', $split);
         };
-
-        foreach (mb_split(preg_quote("(ﾟДﾟ)[ﾟεﾟ]+"), $js) as $block) {
+        foreach (mb_split(preg_quote('(ﾟДﾟ)[ﾟεﾟ]+'), $js) as $block) {
             if ($block === '') continue;
             if (mb_substr($block, 0, $hexLen, 'UTF-8') === $hex) {
                 $code = hexdec($convert(mb_substr($block, $hexLen, null, 'UTF-8'), 'dechex'));
@@ -106,13 +105,38 @@ class AADecoder
      * Detect aaencoded JavaScript code.
      * @param string $js
      * @param null|int $start
-     * @param null|int $end
+     * @param null|int $next
+     * @param null|string $encoded
      * @return bool
      */
-    public static function hasAAEncoded($js, &$start=null, &$end=null)
+    public static function hasAAEncoded($js, &$start=null, &$next=null, &$encoded=null)
     {
-        return
-            ($start = mb_strpos($js, self::BEGIN_CODE, null, 'UTF-8')) !== false &&
-            ($end = mb_strpos($js, self::END_CODE, $start + mb_strlen(self::BEGIN_CODE, 'UTF-8'), 'UTF-8')) !== false;
+        $find = function($haystack, $needle, $offset=0) {
+            $matches = [];
+            for ($i = 0; $i < 6 && $offset !== false; $i ++) {
+                if (($offset = mb_strpos($haystack, $needle, $offset, 'UTF-8')) !== false) {
+                    $matches[$i] = $offset;
+                    $offset ++;
+                }
+            }
+            return count($matches) >= 6 ? [$matches[4], $matches[5]] : false;
+        };
+        $start = -1;
+        while (($start = mb_strpos($js, 'ﾟωﾟﾉ', $start + 1, 'UTF-8')) !== false) {
+            $clear = preg_replace('/[\x03-\x20]/', '', $code = mb_substr($js, $start, null, 'UTF-8'));
+            $len = mb_strlen(self::BEGIN_CODE, 'UTF-8');
+            if (mb_substr($clear, 0, $len, 'UTF-8') === self::BEGIN_CODE &&
+                mb_strpos($clear, self::END_CODE, $len, 'UTF-8') &&
+                ($matches = $find($js, 'ﾟoﾟ', $start))
+            ) {
+                list($beginAt, $endAt) = $matches;
+                $beginAt = mb_strpos($js, '+', $beginAt, 'UTF-8');
+                $endAt = mb_strrpos($js, '(', - mb_strlen($js, 'UTF-8') + $endAt, 'UTF-8');
+                $next = mb_strpos($js, ';', $endAt + 1, 'UTF-8') + 1;
+                $encoded = preg_replace('/[\x03-\x20]/', '', mb_substr($js, $beginAt, $endAt - $beginAt, 'UTF-8'));
+                return true;
+            }
+        }
+        return false;
     }
 }
