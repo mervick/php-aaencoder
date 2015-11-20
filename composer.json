@@ -1,0 +1,27 @@
+{
+    "name": "mervick/aaencoder",
+    "description": "Encode/decode any JavaScript program to/from Japanese style emoticons",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Izman",
+            "email": "izmanw@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "keywords": [
+        "aaencode",
+        "aadecode",
+        "aaencoder",
+        "aadecoder",
+        "javascript"
+    ],
+    "autoload": {
+        "psr-0": {
+            "AADecoder": "",
+            "AAEncoder": ""
+        }
+    }
+}
