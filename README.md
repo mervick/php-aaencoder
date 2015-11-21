@@ -12,6 +12,10 @@ composer require "mervick/aaencoder"
 ```php
 // aaencode:
 echo AAEncoder::encode(file_get_contents('/path/to/file.js'));
+// Also, you can customize encoding level, may be >= 0, default 0. 
+// Be careful, the greater the level of encryption the larger output file.
+// It is not recommended to use more than 3
+echo AAEncoder::encode(file_get_contents('/path/to/file.js'), 2);
 
 // aadecode:
 echo AADecoder::decode(file_get_contents('/path/to/encoded.js'));
