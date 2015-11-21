@@ -12,7 +12,7 @@
 class AADecoder
 {
     const BEGIN_CODE =
-        "ﾟωﾟﾉ=/｀ｍ´）ﾉ~┻━┻//*´∇｀*/['_'];o=(ﾟｰﾟ)=_=3;c=(ﾟΘﾟ)=(ﾟｰﾟ)-(ﾟｰﾟ);" .
+        "ﾟωﾟﾉ=/｀ｍ´）ﾉ~┻━┻/['_'];o=(ﾟｰﾟ)=_=3;c=(ﾟΘﾟ)=(ﾟｰﾟ)-(ﾟｰﾟ);" .
         "(ﾟДﾟ)=(ﾟΘﾟ)=(o^_^o)/(o^_^o);" .
         "(ﾟДﾟ)={ﾟΘﾟ:'_',ﾟωﾟﾉ:((ﾟωﾟﾉ==3)+'_')[ﾟΘﾟ]" .
         ",ﾟｰﾟﾉ:(ﾟωﾟﾉ+'_')[o^_^o-(ﾟΘﾟ)]" .
@@ -45,7 +45,10 @@ class AADecoder
     public static function decode($js)
     {
         if (self::hasAAEncoded($js, $start, $next, $encoded)) {
-            $decoded = self::deobfuscate($encoded) . ';';
+            $decoded = self::deobfuscate($encoded);
+            if (substr(rtrim($decoded), -1) !== ';') {
+                $decoded .= ';';
+            }
             return mb_substr($js, 0, $start, 'UTF-8') . $decoded . self::decode(mb_substr($js, $next, null, 'UTF-8'));
         }
         return $js;
@@ -78,18 +81,38 @@ class AADecoder
         $chars = [];
         $hex = '(oﾟｰﾟo)+';
         $hexLen = mb_strlen($hex, 'UTF-8');
-        $convert = function ($block, $func) use ($bytes) {
-            foreach ($bytes as $byte => $search) {
-                $block = implode($byte, mb_split(preg_quote($search), $block));
+        $calc = function($expr) {
+            $expr = trim($expr, '()');
+            while (preg_match('/(\d+)([\+\-])(\d+)/', $expr)) {
+                $expr = preg_replace_callback('/(\d+)([\+\-])(\d+)/', function($match) {
+                    list(, $param1, $operator, $param2) = $match;
+                    if ($operator === '+') {
+                        return $param1 + $param2;
+                    } elseif ($operator === '-') {
+                        return $param1 - $param2;
+                    } elseif ($operator === '/') {
+                        return $param1 / $param2;
+                    } else {
+                        return $param1 * $param2;
+                    }
+                }, $expr);
             }
+            return $expr;
+        };
+        $convert = function ($block, $func) use ($bytes, $calc) {
+            $block = preg_replace_callback('/\([0-9\-\+\*\/]+\)/', function($matches) use ($calc) {
+                return $calc($matches[0]);
+            }, $block);
             $split = [];
-            foreach (explode('+', trim($block, '+ ')) as $num) {
+            foreach (explode('+', trim($block, '+')) as $num) {
                 $split[] = $func(intval(trim($num)));
             }
             return implode('', $split);
         };
+        foreach ($bytes as $byte => $search) {
+            $js = implode($byte, mb_split(preg_quote($search), $js));
+        }
         foreach (mb_split(preg_quote('(ﾟДﾟ)[ﾟεﾟ]+'), $js) as $block) {
-            if ($block === '') continue;
             if (mb_substr($block, 0, $hexLen, 'UTF-8') === $hex) {
                 $code = hexdec($convert(mb_substr($block, $hexLen, null, 'UTF-8'), 'dechex'));
             }
@@ -123,7 +146,7 @@ class AADecoder
         };
         $start = -1;
         while (($start = mb_strpos($js, 'ﾟωﾟﾉ', $start + 1, 'UTF-8')) !== false) {
-            $clear = preg_replace('/[\x03-\x20]/', '', $code = mb_substr($js, $start, null, 'UTF-8'));
+            $clear = preg_replace('/\/\*.+?\*\//', '', preg_replace('/[\x03-\x20]/', '', $code = mb_substr($js, $start, null, 'UTF-8')));
             $len = mb_strlen(self::BEGIN_CODE, 'UTF-8');
             if (mb_substr($clear, 0, $len, 'UTF-8') === self::BEGIN_CODE &&
                 mb_strpos($clear, self::END_CODE, $len, 'UTF-8') &&
