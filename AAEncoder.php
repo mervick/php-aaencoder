@@ -51,12 +51,11 @@ class AAEncoder
                 }, decoct($code));
             }
             else {
-                $match = str_split(substr('000' . dechex($code), -4));
+                $hex = str_split(substr('000' . dechex($code), -4));
                 $text .= "(oﾟｰﾟo)+ ";
-                do {
-                    $byte = hexdec(array_shift($match));
-                    $text .= self::$bytes[$byte] . '+ ';
-                } while (count($match));
+                for ($i = 0, $len = count($hex); $i < $len; $i++) {
+                    $text .= self::$bytes[hexdec($hex[$i])] . '+ ';
+                }
             }
             $result .=  $text;
 
@@ -104,17 +103,15 @@ class AAEncoder
             6 => [['+3', '+3'], ['+4', '+1', '+1'], ['+4', '+3', '-1']],
             7 => [['+3', '+4'], ['+3', '+3', '+1'], ['+4', '+4', '-1']],
         ];
-        if ($byte <= 8) {
-            while ($level--) {
-                $byte = preg_replace_callback('/[0-7]/', function($match) use ($random) {
-                    $numbers = $random[$match[0]][mt_rand(0, count($random[$match[0]]) - 1)];
-                    shuffle($numbers);
-                    $byte = ltrim(implode('', $numbers), '+');
-                    return strlen($byte) > 2 ? "($byte)" : $byte;
-                }, $byte);
-            }
-            $byte = str_replace('+-', '-', $byte);
+        while ($level--) {
+            $byte = preg_replace_callback('/[0-7]/', function($match) use ($random) {
+                $numbers = $random[$match[0]][mt_rand(0, count($random[$match[0]]) - 1)];
+                shuffle($numbers);
+                $byte = ltrim(implode('', $numbers), '+');
+                return "($byte)";
+            }, $byte);
         }
+        $byte = str_replace('+-', '-', $byte);
         return str_replace(array_keys(self::$bytes), self::$bytes, $byte);
     }
 }
