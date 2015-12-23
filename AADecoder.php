@@ -39,7 +39,7 @@ class AADecoder
      */
     protected static function deobfuscate($js)
     {
-        $bytes = [
+        $bytes = array(
             9 => '((ﾟｰﾟ)+(ﾟｰﾟ)+(ﾟΘﾟ))',
             6 => '((o^_^o)+(o^_^o))',
             2 => '((o^_^o)-(ﾟΘﾟ))',
@@ -56,8 +56,8 @@ class AADecoder
             0 => '(c^_^o)',
             4 => '(ﾟｰﾟ)',
             1 => '(ﾟΘﾟ)',
-        ];
-        $chars = [];
+        );
+        $chars = array();
         $hex = '(oﾟｰﾟo)+';
         $hexLen = mb_strlen($hex, 'UTF-8');
         $calc = function($expr) {
@@ -82,7 +82,7 @@ class AADecoder
             $block = preg_replace_callback('/\([0-9\-\+\*\/]+\)/', function($matches) use ($calc) {
                 return $calc($matches[0]);
             }, $block);
-            $split = [];
+            $split = array();
             foreach (explode('+', trim($block, '+')) as $num) {
                 $split[] = $func(intval(trim($num)));
             }
@@ -114,14 +114,14 @@ class AADecoder
     public static function hasAAEncoded($js, &$start=null, &$next=null, &$encoded=null)
     {
         $find = function($haystack, $needle, $offset=0) {
-            $matches = [];
+            $matches = array();
             for ($i = 0; $i < 6 && $offset !== false; $i ++) {
                 if (($offset = mb_strpos($haystack, $needle, $offset, 'UTF-8')) !== false) {
                     $matches[$i] = $offset;
                     $offset ++;
                 }
             }
-            return count($matches) >= 6 ? [$matches[4], $matches[5]] : false;
+            return count($matches) >= 6 ? array($matches[4], $matches[5]) : false;
         };
         $start = -1;
         while (($start = mb_strpos($js, 'ﾟωﾟﾉ', $start + 1, 'UTF-8')) !== false) {
