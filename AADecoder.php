@@ -57,6 +57,11 @@ class AADecoder
             4 => '(ﾟｰﾟ)',
             1 => '(ﾟΘﾟ)',
         );
+        $native = array(
+            '-~' => '1+',
+            '!' => '1',
+            '[]' => '0',
+        );
         $chars = array();
         $hex = '(oﾟｰﾟo)+';
         $hexLen = mb_strlen($hex, 'UTF-8');
@@ -69,21 +74,20 @@ class AADecoder
                         return $param1 + $param2;
                     } elseif ($operator === '-') {
                         return $param1 - $param2;
-                    } elseif ($operator === '/') {
-                        return $param1 / $param2;
-                    } else {
-                        return $param1 * $param2;
                     }
                 }, $expr);
             }
             return $expr;
         };
         $convert = function ($block, $func) use ($bytes, $calc) {
-            $block = preg_replace_callback('/\([0-9\-\+\*\/]+\)/', function($matches) use ($calc) {
-                return $calc($matches[0]);
-            }, $block);
+            while (preg_match('/\([0-9\-\+\*\/]+\)/', $block)) {
+                $block = preg_replace_callback('/\([0-9\-\+\*\/]+\)/', function($matches) use ($calc) {
+                    return $calc($matches[0]);
+                }, $block);
+            }
             $split = array();
             foreach (explode('+', trim($block, '+')) as $num) {
+                if ($num === '') continue;
                 $split[] = $func(intval(trim($num)));
             }
             return implode('', $split);
@@ -92,6 +96,8 @@ class AADecoder
             $js = implode($byte, mb_split(preg_quote($search), $js));
         }
         foreach (mb_split(preg_quote('(ﾟДﾟ)[ﾟεﾟ]+'), $js) as $block) {
+            $block = trim(trim(str_replace(array_keys($native), array_values($native), $block), '+'));
+            if ($block === '') continue;
             if (mb_substr($block, 0, $hexLen, 'UTF-8') === $hex) {
                 $code = hexdec($convert(mb_substr($block, $hexLen, null, 'UTF-8'), 'dechex'));
             }
