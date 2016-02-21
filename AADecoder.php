@@ -62,6 +62,10 @@ class AADecoder
             '!' => '1',
             '[]' => '0',
         );
+        $native = array(
+            array_keys($native),
+            array_values($native),
+        );
         $chars = array();
         $hex = '(oﾟｰﾟo)+';
         $hexLen = mb_strlen($hex, 'UTF-8');
@@ -96,7 +100,7 @@ class AADecoder
             $js = implode($byte, mb_split(preg_quote($search), $js));
         }
         foreach (mb_split(preg_quote('(ﾟДﾟ)[ﾟεﾟ]+'), $js) as $block) {
-            $block = trim(trim(str_replace(array_keys($native), array_values($native), $block), '+'));
+            $block = trim(trim(str_replace($native[0], $native[1], $block), '+'));
             if ($block === '') continue;
             if (mb_substr($block, 0, $hexLen, 'UTF-8') === $hex) {
                 $code = hexdec($convert(mb_substr($block, $hexLen, null, 'UTF-8'), 'dechex'));
