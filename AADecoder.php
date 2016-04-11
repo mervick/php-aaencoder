@@ -70,18 +70,7 @@ class AADecoder
         $hex = '(oﾟｰﾟo)+';
         $hexLen = mb_strlen($hex, 'UTF-8');
         $calc = function($expr) {
-            $expr = trim($expr, '()');
-            while (preg_match('/(\d+)([\+\-])(\d+)/', $expr)) {
-                $expr = preg_replace_callback('/(\d+)([\+\-])(\d+)/', function($match) {
-                    list(, $param1, $operator, $param2) = $match;
-                    if ($operator === '+') {
-                        return $param1 + $param2;
-                    } elseif ($operator === '-') {
-                        return $param1 - $param2;
-                    }
-                }, $expr);
-            }
-            return $expr;
+            return eval("return $expr;");
         };
         $convert = function ($block, $func) use ($bytes, $calc) {
             while (preg_match('/\([0-9\-\+\*\/]+\)/', $block)) {
