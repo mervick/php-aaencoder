@@ -1,3 +1,5 @@
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg)](https://stand-with-ukraine.pp.ua/)
+
 # PHP AAEncoder and AADecoder
 
 `AAEncoder` - Encode any JavaScript program to [Japanese style emoticons](http://utf-8.jp/public/aaencode.html) (^\_^).  
